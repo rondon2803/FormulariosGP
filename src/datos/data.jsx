@@ -20,6 +20,17 @@ const tiposDocumentos = [
     { value: "Otro", label: "Otro" }
 ];
 
+const tiposDocumentosCL = [
+    // { value: "tipoDocumento", label: "Ej. Cédula" },
+    { value: "RUN", label: "RUN" },
+    { value: "CEDULA", label: "Cédula" },
+    { value: "DNI", label: "DNI" },
+    { value: "Pasaporte", label: "Pasaporte" },
+    { value: "L.C", label: "L.C" },
+    { value: "L.E", label: "L.E" },
+    { value: "Otro", label: "Otro" }
+];
+
 const captadores = [
     { value: "captador", label: "Captador" },
     { value: "Captador-1", label: "Captador-1" },
@@ -33,6 +44,26 @@ const captadores = [
     { value: "Captador-9", label: "Captador-9" },
     { value: "Captador-10", label: "Captador-10" },
 ];
+
+const regiones = [
+    { value: "no resido en Chile", label: "No resido en Chile" },
+    { value: "Antofagasta", label: "Antofagasta" },
+    { value: "Araucanía", label: "Araucanía" },
+    { value: "Arica y Parinacota", label: "Arica y Parinacota" },
+    { value: "Atacama", label: "Atacama" },
+    { value: "Aysen", label: "Aysen" },
+    { value: "Bío-Bío", label: "Bío-Bío" },
+    { value: "Coquimbo", label: "Coquimbo" },
+    { value: "Los Lagos", label: "Los Lagos" },
+    { value: "Los Ríos", label: "Los Ríos" },
+    { value: "Magallanes", label: "Magallanes" },
+    { value: "Maule", label: "Maule" },
+    { value: "Metropolitana", label: "Metropolitana" },
+    { value: "Ñuble", label: "Ñuble" },
+    { value: "O'Higgins", label: "O'Higgins" },
+    { value: "Tarapacá", label: "Tarapacá" },
+    { value: "Valparaíso", label: "Valparaíso" }
+]
 
 const diaData = [
     { value: "Dia", label: "Día" },
@@ -517,6 +548,8 @@ export {
     provinciaData,
     tarjetaData,
     tiposDocumentos,
-    captadores
+    captadores,
+    regiones,
+    tiposDocumentosCL
 
 }

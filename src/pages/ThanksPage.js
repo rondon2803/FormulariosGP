@@ -26,9 +26,11 @@ export const ThanksPage = () => {
                 <CajaImagen alt='Background' src={botes}/>
             </div>
             
-            <h1>Muchas gracias por sumarte!</h1>
+            
+            <p className="text-5xl text-blue-500 font-semibold">¡Muchas gracias por sumarte!</p>
             <h2>Todos nuestros recursos provienen de donaciones particulares de personas como vos, que deciden apoyar campañas para seguir defendiendo el planeta.</h2>
-            <p>¡Sumate ahora, con vos somos más!</p>
+            
+            <p className="text-3xl text-green-600 font-semibold">¡SÚMATE AHORA, CONTIGO SOMOS MÁS!</p>
         
         </body>
 

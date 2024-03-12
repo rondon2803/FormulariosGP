@@ -105,4 +105,10 @@ footer{
     max-width: auto;
     max-height: auto;
     background: cover;
+
+    @media (max-width: 1561px) {
+        margin-left: 0;
+        width: fit-content;
+        
+    }
 }

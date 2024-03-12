@@ -10,7 +10,7 @@ import {faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import ComponenteInput from '../componentes/ComponenteInput';
 import Dropdown from '../componentes/ComponenteDropdown';
 import { MensajeError } from '../elementos/Formularios';
-import { tiposDocumentos } from '../datos/data';
+import { tiposDocumentosCL, regiones } from '../datos/data';
 
 export const FormPageCL = () => {
 
@@ -21,8 +21,8 @@ export const FormPageCL = () => {
     const[codigoArea, cambiarCodigoArea] = useState({campo:"", valido: null});
     const[ciudad,cambiarCiudad] = useState({campo:"", valido: null});
     const[email, cambiarEmail] =useState({campo:"", valido: null});
-    // const[pais, cambiarPais] = useState({campo: '', valido: null, descriptivo: 'pais' });
-    const[tipoDocumento, cambiarTipoDocumento] = useState({campo:"Cedula", valido: null, descriptivo: 'tipoDocumento'});
+    const[region, cambiarRegion] = useState({campo: '', valido: null, descriptivo: 'region' });
+    const[tipoDocumento, cambiarTipoDocumento] = useState({campo:"RUN", valido: null, descriptivo: 'tipoDocumento'});
     // const[terminos, cambiarTerminos] = useState(true);
     const[terminos, cambiarTerminos] = useState(true);
     const[formularioValido, cambiarFormularioValido] = useState(null);
@@ -175,7 +175,7 @@ export const FormPageCL = () => {
 
                               <Dropdown
                               label="Tipo de documento"
-                              data={tiposDocumentos}
+                              data={tiposDocumentosCL}
                               estado={tipoDocumento}
                               descriptivo="tipoDocumento"
                               cambiarEstado={cambiarTipoDocumento}
@@ -204,17 +204,17 @@ export const FormPageCL = () => {
 
                       <div className="mb-4 md:flex md:items-center">
                           <div className="md:w-1/2 px-3 mb-6 md:mb-0">
-                              <ComponenteInput 
-                              estado={codigoArea}
-                              cambiarEstado={cambiarCodigoArea}
-                              tipo="text"
-                              label="Cód área" 
-                              placeholder="Ej. 647"
-                              name="codigo"
-                              leyendaError="Campo incorrecto"
-                              expresionRegular={expresiones.caracteristicaTelefono}
-                              >
-                              </ComponenteInput>
+                            <ComponenteInput 
+                            estado={email}
+                            cambiarEstado={cambiarEmail}
+                            tipo="email"
+                            label="Correo electrónico" 
+                            placeholder="Ej. daniela.rondon@email.com"
+                            name="mail"
+                            leyendaError="Campo incorrecto"
+                            expresionRegular={expresiones.correo}
+                            > 
+                            </ComponenteInput>
                           </div>
                           <div className="md:w-1/2 px-3">
                               <ComponenteInput 
@@ -222,7 +222,7 @@ export const FormPageCL = () => {
                               cambiarEstado={cambiarTelefono}
                               tipo="text"
                               label="Número telefónico" 
-                              placeholder="Ej. 41256847"
+                              placeholder="Ej. +56987547853"
                               name="celular"
                               leyendaError="Campo incorrecto"
                               expresionRegular={expresiones.telefono}
@@ -235,30 +235,29 @@ export const FormPageCL = () => {
 
                       <div className="mb-4 md:flex md:items-center">
                           <div className="md:w-1/2 px-3 mb-6 md:mb-0">
-                              <ComponenteInput 
-                              estado={ciudad}
-                              cambiarEstado={cambiarCiudad}
-                              tipo="text"
-                              label="Ciudad" 
-                              placeholder="Ej. Santiago"
-                              name="ciudad"
-                              leyendaError="Campo incorrecto"
-                              expresionRegular={expresiones.nombre}
-                              > 
-                              </ComponenteInput>
+                                <Dropdown
+                                    label="Tipo de documento"
+                                    data={regiones}
+                                    estado={region}
+                                    descriptivo="region"
+                                    cambiarEstado={cambiarRegion}
+                                    leyendaError="Campo Obligatorio"
+                                    name="region"
+                                    id="region"
+                                ></Dropdown>
                           </div>
                           <div className="md:w-1/2 px-3">
-                          <ComponenteInput 
-                          estado={email}
-                          cambiarEstado={cambiarEmail}
-                          tipo="email"
-                          label="Correo electrónico" 
-                          placeholder="Ej. daniela.rondon@email.com"
-                          name="mail"
-                          leyendaError="Campo incorrecto"
-                          expresionRegular={expresiones.correo}
-                          > 
-                          </ComponenteInput>
+                                <ComponenteInput 
+                                    estado={ciudad}
+                                    cambiarEstado={cambiarCiudad}
+                                    tipo="text"
+                                    label="Ciudad / Comuna" 
+                                    placeholder="Ej. Santiago de Chile"
+                                    name="ciudad"
+                                    leyendaError="Campo incorrecto"
+                                    expresionRegular={expresiones.nombre}
+                                    > 
+                                </ComponenteInput>
                           </div>
                       </div>
                       
