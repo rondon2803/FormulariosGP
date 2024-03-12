@@ -83,6 +83,7 @@ export const FormPageCLoffline = () => {
         console.log(error);
         })
         
+        saveData();  
         cambiarNombre({campo: '', valido: null});
         cambiarApellido({campo: '', valido: null});
         cambiarTipoDocumento({campo: 'Cedula', valido: null, descriptivo: 'tipoDocumento' });
@@ -91,6 +92,7 @@ export const FormPageCLoffline = () => {
         cambiarTelefono({campo: '', valido: null});
         cambiarCiudad({campo: '', valido: null});
         cambiarEmail({campo: '', valido: null});
+        cambiarCaptador({campo: '', valido: null, descriptivo: 'captador'});
         cambiarTerminos({campo: '', valido: null});
         //cambiarTerminos(true)
 
