@@ -18,7 +18,6 @@ export const FormPageCL = () => {
     const[apellido, cambiarApellido] =useState({campo:"", valido: null});
     const[dni, cambiarDNI] =useState({campo:"", valido: null});
     const[telefono, cambiarTelefono] =useState({campo:"", valido: null});
-    const[codigoArea, cambiarCodigoArea] = useState({campo:"", valido: null});
     const[ciudad,cambiarCiudad] = useState({campo:"", valido: null});
     const[email, cambiarEmail] =useState({campo:"", valido: null});
     const[region, cambiarRegion] = useState({campo: '', valido: null, descriptivo: 'region' });
@@ -39,7 +38,8 @@ export const FormPageCL = () => {
         direccion: /^[a-zA-ZÀ-ÿ\s0-9_-]{4,40}$/,
         cp: /^[a-zA-ZÀ-ÿ\s0-9_-]{3,12}$/,
         tarjetaCredito: /^\d{12,16}$/, 
-        titularTarjeta: /^[a-zA-ZÀ-ÿ\s]{4,40}$/ // Letras y espacios, pueden llevar acentos.
+        titularTarjeta: /^[a-zA-ZÀ-ÿ\s]{4,40}$/, // Letras y espacios, pueden llevar acentos.
+        telefonoChile:  /^\+\d{5,14}$/, // 7 a 14 numeros.
     }
 
 
@@ -56,10 +56,10 @@ export const FormPageCL = () => {
         apellido.valido === 'true' &&
         tipoDocumento.valido === 'true' &&
         dni.valido === 'true' &&
-        codigoArea.valido === 'true' &&
+        email.valido === 'true' &&
         telefono.valido === 'true' &&
-        ciudad.valido === 'true' &&
-        email.valido === 'true'
+        region.valido === 'true' &&
+        ciudad.valido === 'true'
 
         )
         {
@@ -71,10 +71,10 @@ export const FormPageCL = () => {
           lastName: apellido.campo,
           docType: tipoDocumento.campo,
           docNumber: dni.campo,
-          areaCode: codigoArea.campo,
-          mobileNumber: telefono.campo,
-          city: ciudad.campo,
           email: email.campo,
+          mobileNumber: telefono.campo,
+          region: region.campo,
+          city: ciudad.campo,
           form_id : 8
         })
         .then(function (response) {
@@ -86,12 +86,12 @@ export const FormPageCL = () => {
         
         cambiarNombre({campo: '', valido: null});
         cambiarApellido({campo: '', valido: null});
-        cambiarTipoDocumento({campo: 'Cedula', valido: null, descriptivo: 'tipoDocumento' });
+        cambiarTipoDocumento({campo: 'RUN', valido: null, descriptivo: 'tipoDocumento' });
         cambiarDNI({campo: '', valido: null});
-        cambiarCodigoArea({campo: '', valido: null});
-        cambiarTelefono({campo: '', valido: null});
-        cambiarCiudad({campo: '', valido: null});
         cambiarEmail({campo: '', valido: null});
+        cambiarTelefono({campo: '', valido: null});
+        cambiarRegion({campo: '', valido: null});
+        cambiarCiudad({campo: '', valido: null});
         cambiarTerminos({campo: '', valido: null});
         //cambiarTerminos(true)
 
@@ -225,7 +225,7 @@ export const FormPageCL = () => {
                               placeholder="Ej. +56987547853"
                               name="celular"
                               leyendaError="Campo incorrecto"
-                              expresionRegular={expresiones.telefono}
+                              expresionRegular={expresiones.telefonoChile}
                               > 
                               </ComponenteInput>
                           </div>
@@ -236,7 +236,7 @@ export const FormPageCL = () => {
                       <div className="mb-4 md:flex md:items-center">
                           <div className="md:w-1/2 px-3 mb-6 md:mb-0">
                                 <Dropdown
-                                    label="Tipo de documento"
+                                    label="Region"
                                     data={regiones}
                                     estado={region}
                                     descriptivo="region"
@@ -252,7 +252,7 @@ export const FormPageCL = () => {
                                     cambiarEstado={cambiarCiudad}
                                     tipo="text"
                                     label="Ciudad / Comuna" 
-                                    placeholder="Ej. Santiago de Chile"
+                                    placeholder="Ej. Santiago Centro"
                                     name="ciudad"
                                     leyendaError="Campo incorrecto"
                                     expresionRegular={expresiones.nombre}

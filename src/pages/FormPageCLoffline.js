@@ -17,7 +17,6 @@ export const FormPageCLoffline = () => {
     const[apellido, cambiarApellido] =useState({campo:"", valido: null});
     const[dni, cambiarDNI] =useState({campo:"", valido: null});
     const[telefono, cambiarTelefono] =useState({campo:"", valido: null});
-    const[codigoArea, cambiarCodigoArea] = useState({campo:"", valido: null});
     const[ciudad,cambiarCiudad] = useState({campo:"", valido: null});
     const[email, cambiarEmail] =useState({campo:"", valido: null});
     const[region, cambiarRegion] = useState({campo: '', valido: null, descriptivo: 'region' });
@@ -51,44 +50,45 @@ export const FormPageCLoffline = () => {
         //console.log(evt);
 
         if (
-        nombre.valido === 'true' &&
-        apellido.valido === 'true' &&
-        tipoDocumento.valido === 'true' &&
-        dni.valido === 'true' &&
-        codigoArea.valido === 'true' &&
-        telefono.valido === 'true' &&
-        ciudad.valido === 'true' &&
-        email.valido === 'true'
+            nombre.valido === 'true' &&
+            apellido.valido === 'true' &&
+            tipoDocumento.valido === 'true' &&
+            dni.valido === 'true' &&
+            email.valido === 'true' &&
+            telefono.valido === 'true' &&
+            region.valido === 'true' &&
+            ciudad.valido === 'true' &&
+            captador.valido === 'true'
 
         )
         {
-        console.log("se mete en forma");
+        //console.log("se mete en forma");
 
 
-        axios.post('https://backoffice.infogreenpeace.org/api/forms/save', {
-          firstName: nombre.campo, //si el campo se llama igual que la clave basta con poner nombre
-          lastName: apellido.campo,
-          docType: tipoDocumento.campo,
-          docNumber: dni.campo,
-          areaCode: codigoArea.campo,
-          mobileNumber: telefono.campo,
-          city: ciudad.campo,
-          email: email.campo,
-          form_id : 8
-        })
-        .then(function (response) {
-        console.log(response);
-        })
-        .catch(function (error) {
-        console.log(error);
-        })
+        // axios.post('https://backoffice.infogreenpeace.org/api/forms/save', {
+        //     firstName: nombre.campo, //si el campo se llama igual que la clave basta con poner nombre
+        //     lastName: apellido.campo,
+        //     docType: tipoDocumento.campo,
+        //     docNumber: dni.campo,
+        //     email: email.campo,
+        //     mobileNumber: telefono.campo,
+        //     region: region.campo,
+        //     city: ciudad.campo,
+        //     captador: captador.campo,
+        //     form_id : 8
+        // })
+        // .then(function (response) {
+        // console.log(response);
+        // })
+        // .catch(function (error) {
+        // console.log(error);
+        // })
         
         saveData();  
         cambiarNombre({campo: '', valido: null});
         cambiarApellido({campo: '', valido: null});
         cambiarTipoDocumento({campo: 'Cedula', valido: null, descriptivo: 'tipoDocumento' });
         cambiarDNI({campo: '', valido: null});
-        cambiarCodigoArea({campo: '', valido: null});
         cambiarTelefono({campo: '', valido: null});
         cambiarCiudad({campo: '', valido: null});
         cambiarEmail({campo: '', valido: null});
@@ -111,7 +111,7 @@ export const FormPageCLoffline = () => {
 
         // Crear un objeto con los datos
         const nuevoDato = { firstName: nombre.campo, lastName: apellido.campo, docType: tipoDocumento.campo, docNumber: dni.campo,
-            areaCode: codigoArea.campo, mobileNumber: telefono.campo,  city: ciudad.campo, email: email.campo, 
+            email: email.campo, mobileNumber: telefono.campo, region: region.campo, city: ciudad.campo, 
             captador: captador.campo, form_id : 7
         };
 
@@ -339,7 +339,7 @@ export const FormPageCLoffline = () => {
                         <div className="mb-4 md:flex md:items-center">
                             <div className="md:w-1/2 px-3 mb-6 md:mb-0">
                                   <Dropdown
-                                      label="Tipo de documento"
+                                      label="Region"
                                       data={regiones}
                                       estado={region}
                                       descriptivo="region"
@@ -355,7 +355,7 @@ export const FormPageCLoffline = () => {
                                       cambiarEstado={cambiarCiudad}
                                       tipo="text"
                                       label="Ciudad / Comuna" 
-                                      placeholder="Ej. Santiago de Chile"
+                                      placeholder="Ej. Santiago Centro"
                                       name="ciudad"
                                       leyendaError="Campo incorrecto"
                                       expresionRegular={expresiones.nombre}
