@@ -94,7 +94,7 @@ export const FormPageCOoffline = () => {
 
         // Crear un objeto con los datos
         const nuevoDato = { firstName: nombre.campo, lastName: apellido.campo, docType: tipoDocumento.campo, docNumber: dni.campo,
-            areaCode: codigoArea.campo, mobileNumber: telefono.campo,  city: ciudad.campo, email: email.campo, 
+            areaCode: codigoArea.campo, phoneNumber: telefono.campo,  city: ciudad.campo, email: email.campo, 
             captador: captador.campo, form_id : 7
         };
 
@@ -155,11 +155,11 @@ export const FormPageCOoffline = () => {
                 docType: objeto.docType,
                 docNumber: objeto.docNumber,
                 areaCode: objeto.areaCode,
-                mobileNumber: objeto.mobileNumber,
+                phoneNumber: objeto.mobileNumber,
                 city: objeto.city,
                 email: objeto.email,
                 captador: objeto.captador,
-                form_id :  8
+                form_id :  11
             })
             .then(function (response) {
             console.log(response);

@@ -23,6 +23,7 @@ const tiposDocumentos = [
 const tiposDocumentosCL = [
     // { value: "tipoDocumento", label: "Ej. Cédula" },
     { value: "RUN", label: "RUN" },
+    { value: "RUT", label: "RUT" },
     { value: "CEDULA", label: "Cédula" },
     { value: "DNI", label: "DNI" },
     { value: "Pasaporte", label: "Pasaporte" },

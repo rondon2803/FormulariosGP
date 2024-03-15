@@ -73,10 +73,10 @@ const FormPage = () => {
           docType: tipoDocumento.campo,
           docNumber: dni.campo,
           areaCode: codigoArea.campo,
-          mobileNumber: telefono.campo,
+          phoneNumber: telefono.campo,
           city: ciudad.campo,
           email: email.campo,
-          form_id : 8
+          form_id : 10
         })
         .then(function (response) {
         console.log(response);

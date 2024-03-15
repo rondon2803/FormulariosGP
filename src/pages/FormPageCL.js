@@ -40,6 +40,7 @@ export const FormPageCL = () => {
         tarjetaCredito: /^\d{12,16}$/, 
         titularTarjeta: /^[a-zA-ZÀ-ÿ\s]{4,40}$/, // Letras y espacios, pueden llevar acentos.
         telefonoChile:  /^\+\d{5,14}$/, // 7 a 14 numeros.
+        
     }
 
 
@@ -63,19 +64,18 @@ export const FormPageCL = () => {
 
         )
         {
-        console.log("se mete en forma");
 
 
-        axios.post('https://backoffice.infogreenpeace.org/api/forms/save', {
+        axios.post('https://backoffice.voluntariosgreenpeace.cl/api/forms/save', {
           firstName: nombre.campo, //si el campo se llama igual que la clave basta con poner nombre
           lastName: apellido.campo,
           docType: tipoDocumento.campo,
           docNumber: dni.campo,
           email: email.campo,
-          mobileNumber: telefono.campo,
+          phoneNumber: telefono.campo,
           region: region.campo,
           city: ciudad.campo,
-          form_id : 8
+          form_id : 14
         })
         .then(function (response) {
         console.log(response);
@@ -217,17 +217,17 @@ export const FormPageCL = () => {
                             </ComponenteInput>
                           </div>
                           <div className="md:w-1/2 px-3">
-                              <ComponenteInput 
-                              estado={telefono}
-                              cambiarEstado={cambiarTelefono}
-                              tipo="text"
-                              label="Número telefónico" 
-                              placeholder="Ej. +56987547853"
-                              name="celular"
-                              leyendaError="Campo incorrecto"
-                              expresionRegular={expresiones.telefonoChile}
-                              > 
-                              </ComponenteInput>
+                                <ComponenteInput 
+                                estado={telefono}
+                                cambiarEstado={cambiarTelefono}
+                                tipo="text"
+                                label="Número telefónico" 
+                                placeholder="Ej. +56987547853"
+                                name="celular"
+                                leyendaError="Campo incorrecto"
+                                expresionRegular={expresiones.telefonoChile}
+                                > 
+                                </ComponenteInput>
                           </div>
                       </div>
 

@@ -19,7 +19,7 @@ export const FormPageCLoffline = () => {
     const[telefono, cambiarTelefono] =useState({campo:"", valido: null});
     const[ciudad,cambiarCiudad] = useState({campo:"", valido: null});
     const[email, cambiarEmail] =useState({campo:"", valido: null});
-    const[region, cambiarRegion] = useState({campo: '', valido: null, descriptivo: 'region' });
+    const[region, cambiarRegion] = useState({campo: 'no resido en Chile', valido: null, descriptivo: 'region' });
     const[tipoDocumento, cambiarTipoDocumento] = useState({campo:"RUN", valido: null, descriptivo: 'tipoDocumento'});
     const[captador, cambiarCaptador] = useState({campo: '', valido: null, descriptivo: 'captador' });
     const[terminos, cambiarTerminos] = useState(true);
@@ -37,7 +37,8 @@ export const FormPageCLoffline = () => {
         direccion: /^[a-zA-ZÀ-ÿ\s0-9_-]{4,40}$/,
         cp: /^[a-zA-ZÀ-ÿ\s0-9_-]{3,12}$/,
         tarjetaCredito: /^\d{12,16}$/, 
-        titularTarjeta: /^[a-zA-ZÀ-ÿ\s]{4,40}$/ // Letras y espacios, pueden llevar acentos.
+        titularTarjeta: /^[a-zA-ZÀ-ÿ\s]{4,40}$/, // Letras y espacios, pueden llevar acentos.
+        telefonoChile:  /^\+\d{5,14}$/, // 7 a 14 numeros.
     }
 
 
@@ -53,7 +54,7 @@ export const FormPageCLoffline = () => {
             nombre.valido === 'true' &&
             apellido.valido === 'true' &&
             tipoDocumento.valido === 'true' &&
-            dni.valido === 'true' &&
+            //dni.valido === 'true' &&
             email.valido === 'true' &&
             telefono.valido === 'true' &&
             region.valido === 'true' &&
@@ -62,28 +63,7 @@ export const FormPageCLoffline = () => {
 
         )
         {
-        //console.log("se mete en forma");
-
-
-        // axios.post('https://backoffice.infogreenpeace.org/api/forms/save', {
-        //     firstName: nombre.campo, //si el campo se llama igual que la clave basta con poner nombre
-        //     lastName: apellido.campo,
-        //     docType: tipoDocumento.campo,
-        //     docNumber: dni.campo,
-        //     email: email.campo,
-        //     mobileNumber: telefono.campo,
-        //     region: region.campo,
-        //     city: ciudad.campo,
-        //     captador: captador.campo,
-        //     form_id : 8
-        // })
-        // .then(function (response) {
-        // console.log(response);
-        // })
-        // .catch(function (error) {
-        // console.log(error);
-        // })
-        
+       
         saveData();  
         cambiarNombre({campo: '', valido: null});
         cambiarApellido({campo: '', valido: null});
@@ -111,8 +91,8 @@ export const FormPageCLoffline = () => {
 
         // Crear un objeto con los datos
         const nuevoDato = { firstName: nombre.campo, lastName: apellido.campo, docType: tipoDocumento.campo, docNumber: dni.campo,
-            email: email.campo, mobileNumber: telefono.campo, region: region.campo, city: ciudad.campo, 
-            captador: captador.campo, form_id : 7
+            email: email.campo, phoneNumber: telefono.campo, region: region.campo, city: ciudad.campo, 
+            captador: captador.campo, form_id : 15
         };
 
         // Leer los datos existentes de localStorage
@@ -166,17 +146,17 @@ export const FormPageCLoffline = () => {
             //console.log(objeto.email);
             //console.log("formid: 7");
             i++;
-            axios.post('https://backoffice.infogreenpeace.org/api/forms/save',{
-                firstName: objeto.firstName,
-                lastName: objeto.lastName,
-                docType: objeto.docType,
-                docNumber: objeto.docNumber,
-                areaCode: objeto.areaCode,
-                mobileNumber: objeto.mobileNumber,
-                city: objeto.city,
-                email: objeto.email,
+            axios.post('https://backoffice.voluntariosgreenpeace.cl/api/forms/save',{
+                firstName: nombre.campo, //si el campo se llama igual que la clave basta con poner nombre
+                lastName: apellido.campo,
+                docType: tipoDocumento.campo,
+                docNumber: dni.campo,
+                email: email.campo,
+                phoneNumber: telefono.campo,
+                region: region.campo,
+                city: ciudad.campo,
                 captador: objeto.captador,
-                form_id :  8
+                form_id :  15
             })
             .then(function (response) {
             console.log(response);
@@ -328,7 +308,7 @@ export const FormPageCLoffline = () => {
                                 placeholder="Ej. +56987547853"
                                 name="celular"
                                 leyendaError="Campo incorrecto"
-                                expresionRegular={expresiones.telefono}
+                                expresionRegular={expresiones.telefonoChile}
                                 > 
                                 </ComponenteInput>
                             </div>
