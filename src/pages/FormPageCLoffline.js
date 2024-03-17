@@ -147,14 +147,14 @@ export const FormPageCLoffline = () => {
             //console.log("formid: 7");
             i++;
             axios.post('https://backoffice.voluntariosgreenpeace.cl/api/forms/save',{
-                firstName: nombre.campo, //si el campo se llama igual que la clave basta con poner nombre
-                lastName: apellido.campo,
-                docType: tipoDocumento.campo,
-                docNumber: dni.campo,
-                email: email.campo,
-                phoneNumber: telefono.campo,
-                region: region.campo,
-                city: ciudad.campo,
+                firstName: objeto.firstName, //si el campo se llama igual que la clave basta con poner nombre
+                lastName: objeto.lastName,
+                docType: objeto.docType,
+                docNumber: objeto.docNumber,
+                email: objeto.email,
+                phoneNumber: objeto.phoneNumber,
+                region: objeto.region,
+                city: objeto.city,
                 captador: objeto.captador,
                 form_id :  15
             })
