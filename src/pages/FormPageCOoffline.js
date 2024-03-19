@@ -95,7 +95,7 @@ export const FormPageCOoffline = () => {
         // Crear un objeto con los datos
         const nuevoDato = { firstName: nombre.campo, lastName: apellido.campo, docType: tipoDocumento.campo, docNumber: dni.campo,
             areaCode: codigoArea.campo, phoneNumber: telefono.campo,  city: ciudad.campo, email: email.campo, 
-            captador: captador.campo, form_id : 7
+            captador: captador.campo, form_id : 11
         };
 
         // Leer los datos existentes de localStorage
@@ -140,14 +140,16 @@ export const FormPageCOoffline = () => {
     function cargaArchivos(data){
         let i = 0;
         data.forEach(objeto => {
-            //console.log(objeto.firstName);
-            //console.log(objeto.lastName);
-            //console.log(objeto.docType);
-            //console.log(objeto.docNumber);
-            //console.log(objeto.areaCode);
-            //console.log(objeto.mobileNumber);
-            //console.log(objeto.email);
-            //console.log("formid: 7");
+        //    console.log(objeto.firstName);
+        //    console.log(objeto.lastName);
+        //    console.log(objeto.docType);
+        //    console.log(objeto.docNumber);
+        //    console.log(objeto.areaCode);
+        //    console.log(objeto.phoneNumber);
+        //    console.log(objeto.city);
+        //    console.log(objeto.email);
+        //    console.log(objeto.captador);
+         //   console.log("formid: 11");
             i++;
             axios.post('https://backoffice.infogreenpeace.org/api/forms/save',{
                 firstName: objeto.firstName,
@@ -155,7 +157,7 @@ export const FormPageCOoffline = () => {
                 docType: objeto.docType,
                 docNumber: objeto.docNumber,
                 areaCode: objeto.areaCode,
-                phoneNumber: objeto.mobileNumber,
+                phoneNumber: objeto.phoneNumber,
                 city: objeto.city,
                 email: objeto.email,
                 captador: objeto.captador,
