@@ -10,6 +10,7 @@ import ComponenteInput from '../componentes/ComponenteInput';
 import Dropdown from '../componentes/ComponenteDropdown';
 import { MensajeError } from '../elementos/Formularios';
 import { tiposDocumentosCL, regiones, captadores } from '../datos/data';
+//import temporaldata from '../datos/dataTemporal.json';
 
 export const FormPageCLoffline = () => {
 
@@ -39,6 +40,7 @@ export const FormPageCLoffline = () => {
         tarjetaCredito: /^\d{12,16}$/, 
         titularTarjeta: /^[a-zA-ZÀ-ÿ\s]{4,40}$/, // Letras y espacios, pueden llevar acentos.
         telefonoChile:  /^\+\d{5,14}$/, // 7 a 14 numeros.
+        rut: /^\d{6,10}k?$/, // 7 a 8 numeros.
     }
 
 
@@ -69,7 +71,8 @@ export const FormPageCLoffline = () => {
         cambiarApellido({campo: '', valido: null});
         cambiarTipoDocumento({campo: 'Cedula', valido: null, descriptivo: 'tipoDocumento' });
         cambiarDNI({campo: '', valido: null});
-        cambiarTelefono({campo: '', valido: null});
+        cambiarTelefono({campo: '', valido: null}); 
+        cambiarRegion({campo: '', valido: null})
         cambiarCiudad({campo: '', valido: null});
         cambiarEmail({campo: '', valido: null});
         cambiarCaptador({campo: '', valido: null, descriptivo: 'captador'});
@@ -85,6 +88,17 @@ export const FormPageCLoffline = () => {
         }
 
     }
+
+//*********** */
+
+    // const setearData = () => {
+
+    //     const datitos = temporaldata;
+
+    //     localStorage.setItem('datosFormulario', JSON.stringify(datitos));
+    // }
+
+//*********** */
 
     const saveData = () => {
 
@@ -210,6 +224,7 @@ export const FormPageCLoffline = () => {
                 
                 </div>
                 <button onClick={descargarDatos}  id="descargarDatos" className='descargarDatos'>Descargar Datos</button>
+                {/* <button onClick={setearData}  id="temporal" className='descargarDatos'>Pre-carga</button> */}
   
                 <img src={imagenCentral} alt='Greenpeace' className='imagenPrincipalCL'></img>
                 <button onClick={obtenerTodos}  id="subirDatos" className='subirDatos'>Subir Datos</button>
@@ -277,7 +292,7 @@ export const FormPageCLoffline = () => {
                                 placeholder="Ej. 21516010"
                                 name="dni"
                                 leyendaError="El documento solo pueden ser numeros"
-                                expresionRegular={expresiones.dni}
+                                expresionRegular={expresiones.rut}
                                 
                                 >
                                 </ComponenteInput>

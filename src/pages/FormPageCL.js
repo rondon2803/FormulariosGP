@@ -40,6 +40,7 @@ export const FormPageCL = () => {
         tarjetaCredito: /^\d{12,16}$/, 
         titularTarjeta: /^[a-zA-ZÀ-ÿ\s]{4,40}$/, // Letras y espacios, pueden llevar acentos.
         telefonoChile:  /^\+\d{5,14}$/, // 7 a 14 numeros.
+        rut: /^\d{6,10}k?$/, // 7 a 8 numeros.
         
     }
 
@@ -194,7 +195,7 @@ export const FormPageCL = () => {
                               placeholder="Ej. 21516010"
                               name="dni"
                               leyendaError="El documento solo pueden ser numeros"
-                              expresionRegular={expresiones.dni}
+                              expresionRegular={expresiones.rut}
                               
                               >
                               </ComponenteInput>
