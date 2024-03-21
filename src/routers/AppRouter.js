@@ -5,6 +5,7 @@ import {NotFoundPage} from '../pages/NotFoundPage'
 import { FormPageCOoffline } from '../pages/FormPageCOoffline';
 import { FormPageCL } from '../pages/FormPageCL';
 import { FormPageCLoffline } from '../pages/FormPageCLoffline';
+import { FormPageCOofflineCaptadores } from '../pages/FormPageCLofflineCapadores';
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                 <Route path='/thanks' element={<ThanksPage/>}></Route>
                 <Route path='/colombia' element={<FormPage/>}></Route>
                 <Route path='/colombia/offline' element={<FormPageCOoffline/>}></Route>
+                <Route path='/colombia/captadores/offline' element={<FormPageCOofflineCaptadores/>}></Route>
                 <Route path='/chile' element={<FormPageCL/>}></Route>
                 <Route path='/chile/offline' element={<FormPageCLoffline/>}></Route>
                 <Route path='*' element={<NotFoundPage/>}></Route>

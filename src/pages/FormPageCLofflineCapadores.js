@@ -9,9 +9,9 @@ import {faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import ComponenteInput from '../componentes/ComponenteInput';
 import Dropdown from '../componentes/ComponenteDropdown';
 import { MensajeError } from '../elementos/Formularios';
-import { tiposDocumentos } from '../datos/data';
+import { tiposDocumentos, captadores, paisData, departamentoColombiaData, tarjetasColombiaData, montoDonacionesColombia } from '../datos/data';
 
-export const FormPageCOoffline = () => {
+export const FormPageCOofflineCaptadores = () => {
 
 
 
@@ -21,13 +21,26 @@ export const FormPageCOoffline = () => {
     const[telefono, cambiarTelefono] =useState({campo:"", valido: null});
     const[codigoArea, cambiarCodigoArea] = useState({campo:"", valido: null});
     const[ciudad,cambiarCiudad] = useState({campo:"", valido: null});
+    const[direccion,cambiarDireccion] = useState({campo:"", valido: null});
     const[email, cambiarEmail] =useState({campo:"", valido: null});
-    // const[pais, cambiarPais] = useState({campo: '', valido: null, descriptivo: 'pais' });
+    const[fechaNacimiento, cambiarFechaNacimiento] =useState({campo:"", valido: null});
+    const[pais, cambiarPais] = useState({campo: 'Colombia', valido: null, descriptivo: 'pais' });
+    const[departamento, cambiarDepartamento] = useState({campo: '', valido: null, descriptivo: 'departamento' });
     const[tipoDocumento, cambiarTipoDocumento] = useState({campo:"Cedula", valido: null, descriptivo: 'tipoDocumento'});
-    const[captador, cambiarCaptador] = useState({campo: 'voluntario', valido: null, descriptivo: 'captador' });
+    const[tipoDocumentoTarjeta, cambiarTipoDocumentoTarjeta] = useState({campo:"Cedula", valido: null, descriptivo: 'tipoDocumento'});
+    const[tipoTarjeta, cambiarTipoTarjeta] = useState({campo:'', valido: null, descriptivo: 'tipoTarjeta'});
+    const[tarjeta, cambiarTarjeta] =useState({campo:"", valido: null});
+    const[numeroDocumentoTarjeta, cambiarNumeroDocumentoTarjeta] =useState({campo:'', valido: null});
+    const[fechaExpiracion, cambiarFechaExpiracion] =useState({campo:'', valido: null});
+    const[titularTarjeta, cambiarTitularTarjeta] =useState({campo:'', valido: null});
+    const[monto, cambiarMonto] = useState({campo:'', valido: null});
+    const[montoPersonalizado, cambiarMontoPersonalizado] = useState({campo:'', valido: null});
+    const[captador, cambiarCaptador] = useState({campo: '', valido: null, descriptivo: 'captador' });
     // const[terminos, cambiarTerminos] = useState(true);
     const[terminos, cambiarTerminos] = useState(true);
     const[formularioValido, cambiarFormularioValido] = useState(null);
+
+
 
     const expresiones = {
         usuario: /^[a-zA-Z0-9_-]{4,16}$/, // Letras, numeros, guion y guion_bajo
@@ -40,8 +53,11 @@ export const FormPageCOoffline = () => {
         email: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/,
         direccion: /^[a-zA-ZÀ-ÿ\s0-9_-]{4,40}$/,
         cp: /^[a-zA-ZÀ-ÿ\s0-9_-]{3,12}$/,
-        tarjetaCredito: /^\d{12,16}$/, 
-        titularTarjeta: /^[a-zA-ZÀ-ÿ\s]{4,40}$/ // Letras y espacios, pueden llevar acentos.
+        tarjetaCredito: /^\d{13,19}$/, 
+        titularTarjeta: /^[a-zA-ZÀ-ÿ\s]{4,40}$/, // Letras y espacios, pueden llevar acentos.
+        fechaNacimiento: /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/,
+        fechaExpiracion: /^(0[1-9]|1[0-2])\/\d{2}$/,
+        monto: /^.{3,12}$/, // 4 a 12 digitos.
     }
 
 
@@ -61,20 +77,41 @@ export const FormPageCOoffline = () => {
         codigoArea.valido === 'true' &&
         telefono.valido === 'true' &&
         ciudad.valido === 'true' &&
-        email.valido === 'true' 
+        email.valido === 'true' &&
+        pais.valido === 'true' &&
+        tarjeta.valido === 'true' &&
+        tipoTarjeta.valido === 'true' &&
+        titularTarjeta.valido === 'true' &&
+        numeroDocumentoTarjeta.valido === 'true' &&
+        fechaExpiracion.valido === 'true' &&
+        captador.valido === 'true'
 
         )
         {
             saveData();    
+            cambiarMonto({campo: '30000', valido: null});
+            cambiarMontoPersonalizado({campo:'', valido: null});
             cambiarNombre({campo: '', valido: null});
             cambiarApellido({campo: '', valido: null});
             cambiarTipoDocumento({campo: 'Cedula', valido: null, descriptivo: 'tipoDocumento' });
             cambiarDNI({campo: '', valido: null});
             cambiarCodigoArea({campo: '', valido: null});
             cambiarTelefono({campo: '', valido: null});
+            cambiarPais({campo: 'Colombia', valido: null, descriptivo: 'pais'})
             cambiarCiudad({campo: '', valido: null});
             cambiarEmail({campo: '', valido: null});
-            cambiarCaptador({campo: 'voluntario', valido: null, descriptivo: 'captador'});
+            cambiarFechaNacimiento({campo:'', valido: null});
+            cambiarPais({campo: 'Colombia', valido: null, descriptivo: 'pais' });
+            cambiarDepartamento({campo: '', valido: null, descriptivo: 'departamento' });
+            cambiarCiudad({campo:'', valido: null});
+            cambiarDireccion({campo:'', valido: null});
+            cambiarTipoTarjeta({campo:'', valido: null, descriptivo: 'tipoTarjeta'});
+            cambiarTarjeta({campo:'', valido: null});
+            cambiarFechaExpiracion({campo:'', valido: null});
+            cambiarTipoDocumentoTarjeta({campo:"Cedula", valido: null});
+            cambiarNumeroDocumentoTarjeta({campo:'', valido: null});
+            cambiarTitularTarjeta({campo:'', valido: null});
+            cambiarCaptador({campo: '', valido: null, descriptivo: 'captador'});
             cambiarTerminos(true)
 
             cambiarFormularioValido(true);
@@ -92,9 +129,12 @@ export const FormPageCOoffline = () => {
 
 
         // Crear un objeto con los datos
-        const nuevoDato = { firstName: nombre.campo, lastName: apellido.campo, docType: tipoDocumento.campo, docNumber: dni.campo,
-            areaCode: codigoArea.campo, phoneNumber: telefono.campo,  city: ciudad.campo, email: email.campo, 
-            captador: captador.campo, form_id : 11
+        const nuevoDato = { 
+            amount: monto.campo, amountCustom: montoPersonalizado.campo, firstName: nombre.campo, lastName: apellido.campo, docType: tipoDocumento.campo, docNumber: dni.campo,
+            areaCode: codigoArea.campo, phoneNumber: telefono.campo, email: email.campo, birthDate: fechaNacimiento.campo, country: pais.campo, departamento: departamento.campo,
+            city: ciudad.campo, address: direccion.campo, card_type: tipoTarjeta.campo, card: tarjeta.campo, cardExpiration: fechaExpiracion.campo, cardDocType: tipoDocumentoTarjeta.campo,
+            cardDocNumber: tipoDocumentoTarjeta.campo, cardNameTitular: titularTarjeta.campo,
+            captador: captador.campo, form_id : 12
         };
 
         // Leer los datos existentes de localStorage
@@ -151,21 +191,31 @@ export const FormPageCOoffline = () => {
          //   console.log("formid: 11");
             i++;
             axios.post('https://backoffice.infogreenpeace.org/api/forms/save',{
+                amount: objeto.amount,
+                amountCustom: objeto.amountCustom,
                 firstName: objeto.firstName,
                 lastName: objeto.lastName,
                 docType: objeto.docType,
                 docNumber: objeto.docNumber,
                 areaCode: objeto.areaCode,
                 phoneNumber: objeto.phoneNumber,
-                city: objeto.city,
                 email: objeto.email,
+                birthDate: objeto.birthDate,
+                country: objeto.country,
+                departamento: objeto.departamento,
+                city: objeto.city,
+                address: objeto.address,
+                card_type: objeto.card_type,
+                card: objeto.card,
+                cardExpiration: objeto.cardExpiration,
+                cardDocType: objeto.cardDocType,
+                cardDocNumber: objeto.cardDocNumber,
+                cardNameTitular: objeto.cardNameTitular,
                 captador: objeto.captador,
-                form_id :  11
+                form_id :  12
             })
             .then(function (response) {
             console.log(response);
-            //ACA LIMPIO EL ALMACENAMIENTO EN EL NAVEGADOR SI TODO VA BIEN
-            localStorage.clear();
             })
             .catch(function (error) {
             console.log(error);
@@ -174,7 +224,6 @@ export const FormPageCOoffline = () => {
 
         })
         alert('Se enviaron a la base de datos ' + i + " archivos" );
-        
     };
     
 
@@ -212,11 +261,11 @@ export const FormPageCOoffline = () => {
                 <h1 className="text-5xl font-bold text-green-500 mb-2">GREENPEACE</h1>
                 <p className="text-3xl text-red-600 font-semibold">¡SÚMATE AHORA, CONTIGO SOMOS MÁS!</p>
                 </div>
-                <button onClick={descargarDatos}  id="descargarDatos" className='descargarDatos'>Descargar Datos</button>
+                <button onClick={descargarDatos}  id="descargarDatos" className='descargarDatos'>Download</button>
                 
 
                 <img src={imagenCentral} alt='Greenpeace' className='imagenPrincipal'></img>
-                <button onClick={obtenerTodos}  id="subirDatos" className='subirDatos'>Subir Datos</button>
+                <button onClick={obtenerTodos}  id="subirDatos" className='subirDatos'>Upload Data</button>
                 <div className="mb-4"></div>
             {/* </div> */}
             <div className="mb-4">
@@ -225,6 +274,35 @@ export const FormPageCOoffline = () => {
                     <form action='' onSubmit={onSubmit}>
                         <div className="mb-4 md:flex md:items-center">
                             <div className="md:w-1/2 px-3 mb-6 md:mb-0">
+
+                            <span class="text-gray-700">Autorizo el débito automático mensual de:</span>
+
+                                <Dropdown
+                                    label="Monto a debitar"
+                                    data={montoDonacionesColombia}
+                                    estado={monto}
+                                    descriptivo="monto"
+                                    cambiarEstado={cambiarMonto}
+                                    leyendaError="Campo Obligatorio"
+                                    name="monto"
+                                    id="monto"
+                                ></Dropdown>
+
+                                <ComponenteInput
+                                estado={montoPersonalizado}
+                                cambiarEstado={cambiarMontoPersonalizado}
+                                tipo="texto"
+                                label="Monto Personalizado" 
+                                placeholder=""
+                                name="montoPersonalizado"
+                                leyendaError="Campo Incorrecto"
+                                
+                                
+                                >
+                                </ComponenteInput>
+
+
+
                                 <ComponenteInput
                                 estado={nombre}
                                 cambiarEstado={cambiarNombre}
@@ -319,7 +397,7 @@ export const FormPageCOoffline = () => {
 
                         <div className="mb-4 md:flex md:items-center">
                             <div className="md:w-1/2 px-3 mb-6 md:mb-0">
-                                <ComponenteInput 
+                                {/* <ComponenteInput 
                                 estado={ciudad}
                                 cambiarEstado={cambiarCiudad}
                                 tipo="text"
@@ -329,7 +407,7 @@ export const FormPageCOoffline = () => {
                                 leyendaError="Campo incorrecto"
                                 expresionRegular={expresiones.nombre}
                                 > 
-                                </ComponenteInput>
+                                </ComponenteInput> */}
                             </div>
                             <div className="md:w-1/2 px-3">
                             <ComponenteInput 
@@ -346,17 +424,148 @@ export const FormPageCOoffline = () => {
                             </div>
                         </div>
 
+                        <ComponenteInput 
+                            estado={fechaNacimiento}
+                            cambiarEstado={cambiarFechaNacimiento}
+                            tipo="text"
+                            label="Fecha de Nacimiento" 
+                            placeholder="DD/MM/AAAA"
+                            name="fechaNacimiento"
+                            leyendaError="Campo incorrecto"
+                            expresionRegular={expresiones.fechaNacimiento}
+                            > 
+                        </ComponenteInput>
 
-                        {/* <Dropdown
-                                label="Captador"
-                                data={captadores}
-                                estado={captador}
-                                descriptivo="captador"
-                                cambiarEstado={cambiarCaptador}
+                        <Dropdown
+                                label="Pais"
+                                data={paisData}
+                                estado={pais}
+                                descriptivo="pais"
+                                cambiarEstado={cambiarPais}
                                 leyendaError="Campo Obligatorio"
-                                name="captador"
-                                id="captador"
-                        ></Dropdown> */}
+                                name="pais"
+                                id="pais"
+                        ></Dropdown>
+
+                        <Dropdown
+                                label="Departamento"
+                                data={departamentoColombiaData}
+                                estado={departamento}
+                                descriptivo="departamento"
+                                cambiarEstado={cambiarDepartamento}
+                                leyendaError="Campo Obligatorio"
+                                name="departamento"
+                                id="departamento"
+                        ></Dropdown>    
+                                <ComponenteInput 
+                                estado={ciudad}
+                                cambiarEstado={cambiarCiudad}
+                                tipo="text"
+                                label="Ciudad" 
+                                placeholder="Ej. Bogotá"
+                                name="ciudad"
+                                leyendaError="Campo incorrecto"
+                                expresionRegular={expresiones.nombre}
+                                > 
+                                </ComponenteInput>
+
+                        <ComponenteInput 
+                            estado={direccion}
+                            cambiarEstado={cambiarDireccion}
+                            tipo="text"
+                            label="Direccion" 
+                            placeholder=""
+                            name="direccion"
+                            leyendaError="Campo incorrecto"
+                            expresionRegular={expresiones.direccion}
+                            > 
+                        </ComponenteInput>
+
+                        <Dropdown
+                                label="Tipo de Tarjeta"
+                                data={tarjetasColombiaData}
+                                estado={tipoTarjeta}
+                                descriptivo="tipoTarjeta"
+                                cambiarEstado={cambiarTipoTarjeta}
+                                leyendaError="Campo Obligatorio"
+                                name="tarjeta"
+                                id="tarjeta"
+                        ></Dropdown>
+
+                        <ComponenteInput 
+                            estado={tarjeta}
+                            cambiarEstado={cambiarTarjeta}
+                            tipo="text"
+                            label="Número de tarjeta" 
+                            placeholder="Ej. 47013944281747212"
+                            name="tarjeta"
+                            leyendaError="Campo incorrecto"
+                            expresionRegular={expresiones.tarjetaCredito}
+                            > 
+                        </ComponenteInput>
+
+                        <ComponenteInput 
+                            estado={fechaExpiracion}
+                            cambiarEstado={cambiarFechaExpiracion}
+                            tipo="text"
+                            label="Fecha de expiración" 
+                            placeholder="MM/AA"
+                            name="fechaExpiracion"
+                            leyendaError="Campo incorrecto"
+                            expresionRegular={expresiones.fechaExpiracion}
+                            > 
+                        </ComponenteInput>
+
+                        <Dropdown
+                                label="Tipo de documento"
+                                data={tiposDocumentos}
+                                estado={tipoDocumentoTarjeta}
+                                descriptivo="tipoDocumentoTarjeta"
+                                cambiarEstado={cambiarTipoDocumentoTarjeta}
+                                leyendaError="Campo Obligatorio"
+                                name="tipoDocumentoTarjeta"
+                                id="tipoDocumentoTarjeta"
+                                ></Dropdown>
+
+
+                        <ComponenteInput
+                                estado={numeroDocumentoTarjeta}
+                                cambiarEstado={cambiarNumeroDocumentoTarjeta}
+                                tipo="texto"
+                                label="Número de Documento" 
+                                placeholder=""
+                                name="dni"
+                                leyendaError="El documento solo pueden ser numeros"
+                                expresionRegular={expresiones.dni}
+                                
+                                >
+                                </ComponenteInput>
+
+
+                                <ComponenteInput
+                                estado={titularTarjeta}
+                                cambiarEstado={cambiarTitularTarjeta}
+                                tipo="texto"
+                                label="Titular de la tarjeta" 
+                                placeholder=""
+                                name="numeroDocumentoTarjeta"
+                                leyendaError="El documento solo pueden ser numeros"
+                                expresionRegular={expresiones.titularTarjeta}
+                                
+                                >
+                                </ComponenteInput>              
+
+
+                            <Dropdown
+                                    label="Captador"
+                                    data={captadores}
+                                    estado={captador}
+                                    descriptivo="captador"
+                                    cambiarEstado={cambiarCaptador}
+                                    leyendaError="Campo Obligatorio"
+                                    name="captador"
+                                    id="captador"
+                            ></Dropdown>
                         
                         <div className="flex items-center justify-between">
                             <div className="flex items-center">

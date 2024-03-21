@@ -9,7 +9,7 @@ import {faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import ComponenteInput from '../componentes/ComponenteInput';
 import Dropdown from '../componentes/ComponenteDropdown';
 import { MensajeError } from '../elementos/Formularios';
-import { tiposDocumentos } from '../datos/data';
+import { tiposDocumentos, captadores } from '../datos/data';
 
 export const FormPageCOoffline = () => {
 
@@ -24,7 +24,7 @@ export const FormPageCOoffline = () => {
     const[email, cambiarEmail] =useState({campo:"", valido: null});
     // const[pais, cambiarPais] = useState({campo: '', valido: null, descriptivo: 'pais' });
     const[tipoDocumento, cambiarTipoDocumento] = useState({campo:"Cedula", valido: null, descriptivo: 'tipoDocumento'});
-    const[captador, cambiarCaptador] = useState({campo: 'voluntario', valido: null, descriptivo: 'captador' });
+    const[captador, cambiarCaptador] = useState({campo: '', valido: null, descriptivo: 'captador' });
     // const[terminos, cambiarTerminos] = useState(true);
     const[terminos, cambiarTerminos] = useState(true);
     const[formularioValido, cambiarFormularioValido] = useState(null);
@@ -61,7 +61,8 @@ export const FormPageCOoffline = () => {
         codigoArea.valido === 'true' &&
         telefono.valido === 'true' &&
         ciudad.valido === 'true' &&
-        email.valido === 'true' 
+        email.valido === 'true' &&
+        captador.valido === 'true'
 
         )
         {
@@ -74,7 +75,7 @@ export const FormPageCOoffline = () => {
             cambiarTelefono({campo: '', valido: null});
             cambiarCiudad({campo: '', valido: null});
             cambiarEmail({campo: '', valido: null});
-            cambiarCaptador({campo: 'voluntario', valido: null, descriptivo: 'captador'});
+            cambiarCaptador({campo: '', valido: null, descriptivo: 'captador'});
             cambiarTerminos(true)
 
             cambiarFormularioValido(true);
@@ -164,8 +165,6 @@ export const FormPageCOoffline = () => {
             })
             .then(function (response) {
             console.log(response);
-            //ACA LIMPIO EL ALMACENAMIENTO EN EL NAVEGADOR SI TODO VA BIEN
-            localStorage.clear();
             })
             .catch(function (error) {
             console.log(error);
@@ -174,7 +173,6 @@ export const FormPageCOoffline = () => {
 
         })
         alert('Se enviaron a la base de datos ' + i + " archivos" );
-        
     };
     
 
@@ -347,7 +345,7 @@ export const FormPageCOoffline = () => {
                         </div>
 
 
-                        {/* <Dropdown
+                        <Dropdown
                                 label="Captador"
                                 data={captadores}
                                 estado={captador}
@@ -356,7 +354,7 @@ export const FormPageCOoffline = () => {
                                 leyendaError="Campo Obligatorio"
                                 name="captador"
                                 id="captador"
-                        ></Dropdown> */}
+                        ></Dropdown>
                         
                         <div className="flex items-center justify-between">
                             <div className="flex items-center">

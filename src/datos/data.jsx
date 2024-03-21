@@ -46,6 +46,44 @@ const captadores = [
     { value: "Captador-10", label: "Captador-10" },
 ];
 
+
+const departamentoColombiaData = [
+    { value: "departamento", label: "Departamento" },
+    { value: "Bogotá D.C.", label: "Bogotá D.C." },
+    { value: "Amazonas", label: "Amazonas" },
+    { value: "Antoquia", label: "Antoquia" },
+    { value: "Arauca", label: "Arauca" },
+    { value: "Atlantico", label: "Atlantico" },
+    { value: "Bolivar", label: "Bolivar" },
+    { value: "Boyaca", label: "Boyaca" },
+    { value: "Caldas", label: "Caldas" },
+    { value: "Caqueta", label: "Caqueta" },
+    { value: "Casanare", label: "Casanare" },
+    { value: "Cauca", label: "Cauca" },
+    { value: "Cesar", label: "Cesar" },
+    { value: "Choco", label: "Choco" },
+    { value: "Cordoba", label: "Cordoba" },
+    { value: "Cundinamarca", label: "Cundinamarca" },
+    { value: "Guainia", label: "Guainia" },
+    { value: "Guaviare", label: "Guaviare" },
+    { value: "Huila", label: "Huila" },
+    { value: "La Guajira", label: "La Guajira" },
+    { value: "Magdalena", label: "Magdalena" },
+    { value: "Meta", label: "Meta" },
+    { value: "Nariño", label: "Nariño" },
+    { value: "Norte de Santander", label: "Norte de Santander" },
+    { value: "Putumayo", label: "Putumayo" },
+    { value: "Quindio", label: "Quindio" },
+    { value: "Risaralda", label: "Risaralda" },
+    { value: "San Andres y Providencia", label: "San Andres y Providencia" },
+    { value: "Santander", label: "Santander" },
+    { value: "Sucre", label: "Sucre" },
+    { value: "Tolima", label: "Tolima" },
+    { value: "Valle del Cauca", label: "Valle del Cauca" },
+    { value: "Vaupes", label: "Vaupes" },
+    { value: "Vichada", label: "Vichada" }
+]
+
 const regiones = [
     { value: "no resido en Chile", label: "No resido en Chile" },
     { value: "Antofagasta", label: "Antofagasta" },
@@ -533,8 +571,26 @@ const tarjetaData = [
     { value: "Favacard", label: "Favacard" },
     { value: "Patagonia 365", label: "Patagonia 365" },
     { value: "Visa-Shopping", label: "Visa-Shopping" },
-
     { value: "Otras", label: "Otras" }
+]
+
+const tarjetasColombiaData = [
+    { value: "tipoTarjeta", label: "" },
+    { value: "2", label: "Visa" },
+    { value: "7", label: "Visa débito" },
+    { value: "3", label: "Mastercard" },
+    { value: "8", label: "Mastercard débito" },
+    { value: "4", label: "Amex" },
+
+]
+
+const montoDonacionesColombia = [
+    { value: "30000", label: "$30000" },
+    { value: "50000", label: "$50000" },
+    { value: "80000", label: "$80000" },
+    { value: "otro", label: "Otras donaciones" },
+
+
 ]
 
 export {
@@ -551,6 +607,9 @@ export {
     tiposDocumentos,
     captadores,
     regiones,
-    tiposDocumentosCL
+    tiposDocumentosCL,
+    departamentoColombiaData,
+    tarjetasColombiaData,
+    montoDonacionesColombia
 
 }
