@@ -216,6 +216,8 @@ export const FormPageCOofflineCaptadores = () => {
             })
             .then(function (response) {
             console.log(response);
+            //ACA LIMPIO EL ALMACENAMIENTO EN EL NAVEGADOR SI TODO VA BIEN
+            localStorage.clear();
             })
             .catch(function (error) {
             console.log(error);
